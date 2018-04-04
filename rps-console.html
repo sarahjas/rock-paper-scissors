@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Rock, Paper, Scissors! (Console Only)</title>
+</head>
+<body>
+  <h1>Rock, Paper, Scissors!</h1>
+  <h2>Console Version</h2>
+  <p>Please open the console to view logs.</p>
+  <button id="startButton" onclick="game()">Start</button>
+
+  <script>
+    let choice = ['rock','paper','scissors'];
+    let pSelection, cSelection;
+    
+
+
+
+
+    
+
+    //Initialize game
+    function game() {
+    	console.log("Player chose: " + pPlay());
+    	console.log("Computer chose: " + cPlay());
+    	playRound(pSelection, cSelection);
+    	alert(playRound(pSelection, cSelection));
+    	console.log(playRound(pSelection, cSelection));
+    }
+
+
+    //Computer chooses
+    function cPlay() {
+    	cSelection = choice[Math.floor(Math.random()*choice.length)];
+    	return cSelection;
+    	console.log(cSelection);
+    }
+
+    //Player chooses, added validation and invalid input error
+    function pPlay() {  
+    	pSelection = prompt("What's your choice: Rock, Paper, Scissors ?").toLowerCase();
+      while (pSelection !== "rock" && pSelection !== "paper" && pSelection !== "scissors"){
+      	console.error("\'" + pSelection + "\' is an invalid input.");
+        pSelection = prompt("\'" + pSelection + "\' is an invalid input. Choose again: Rock, Paper, Scissors ?").toLowerCase(); 
+        
+        if (pSelection == "rock" || pSelection == "paper" || pSelection == "scissors") {
+        	break;
+        }
+      }
+      return pSelection;
+    }
+
+    //Compare choices
+    function playRound(pSelection, cSelection) {
+    	if (pSelection === cSelection){
+    		return "It's a tie!";
+    	}
+    	else if (pSelection == "rock" && cSelection == "scissors") {
+    		return "Rock beats scissors. Player Wins!";
+    	}
+    	else if (pSelection == "paper" && cSelection == "rock") {
+    		return "Paper beats rock. Player Wins!";
+    	}
+    	else if (pSelection == "scissors" && cSelection == "paper" ) {
+    		return "Scissors beats paper. Player Wins!";    	}
+    	else {
+    		return cSelection.charAt(0).toUpperCase() + cSelection.slice(1) + " beats " + pSelection.charAt(0).toUpperCase() + pSelection.slice(1) + ". Computer Wins!";
+    	}
+    }  
+  </script>
+</body>
+</html>
